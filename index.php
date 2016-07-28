@@ -5,8 +5,8 @@ header('Content-type: image/jpg');
 header('Content-type: text/html; charset=UTF-8');
 define('USER_AUTH_SESSION_KEY', 'SESSION_ID');
 
-$dbConnect = new mysqli('localhost', 'buta', 'butabuta', 'module4') or die('Database connection error!');
-$dbConnect->select_db('module4') or die('Cannot select database!');
+$dbConnect = new mysqli('localhost', 'root', '', 'Module4') or die('Database connection error!');
+$dbConnect->select_db('Module4') or die('Cannot select database!');
 $dbConnect->set_charset('utf8');
 mb_internal_encoding('UTF-8');
 
@@ -318,6 +318,11 @@ switch ($act) {
         $current_user = null;
 
         $current_user = get_auth_user($_POST['login']);
+        
+        if ($current_user['is_admin'] == 1) {
+            require('templates/admin.php');
+            break 1;
+        }
 
         if ($current_user == null) {
             if (isset($_POST['login_page'])) {
@@ -342,12 +347,11 @@ switch ($act) {
                 $user['id'] . ':' . session_id()
             );
             $current_user = $user;
-
-            $_SESSION['login'] = $current_user['login'];
-            $_SESSION['id'] = $current_user['id'];
-            printStartPage();
-            break;
         }
+        $_SESSION['login'] = $current_user['login'];
+        $_SESSION['id'] = $current_user['id'];
+        printStartPage();
+        break;
 
 
     case 'search_tag':

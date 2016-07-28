@@ -1,5 +1,5 @@
 <?php
-$dbConnect = new mysqli('localhost', 'buta', 'butabuta', 'module4') or die('Database connection error!');
+$dbConnect = new mysqli('localhost', 'root', '', 'module4') or die('Database connection error!');
 $dbConnect->select_db('module4') or die('Cannot select database!');
 $dbConnect->set_charset('utf8');
 mb_internal_encoding('UTF-8');
