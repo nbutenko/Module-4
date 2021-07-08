@@ -1,1 +1,3 @@
-# Module-4
+Registration / Authorization
+Live search
+Pagination
