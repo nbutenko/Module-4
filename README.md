@@ -1,3 +1,1 @@
-Registration / Authorization
-Live search
-Pagination
+Registration / Authorization | User List | Live search | Pagination
